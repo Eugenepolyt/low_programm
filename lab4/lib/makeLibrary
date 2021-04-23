@@ -1,0 +1,11 @@
+CC=riscv64-unknown-elf-gcc
+AR=riscv64-unknown-elf-ar
+CFLAGS=-march=rv64iac -mabi=lp64
+
+all: lib
+
+lib: insertion.o
+	$(AR) -rsc lib.a insertion.o
+	del -f *.o
+insertion.o: insertion.c
+	$(CC) $(CFLAGS) -c insertion.c -o insertion.o
